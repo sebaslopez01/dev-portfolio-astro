@@ -1,4 +1,6 @@
 ---
+import TrackVitals from '../components/TrackVitals.astro';
+
 import '@fontsource/poppins/latin.css';
 import '../styles/global.css';
 
@@ -30,5 +32,6 @@ const { pageTitle } = Astro.props;
 	</head>
 	<body>
 		<slot />
+		<TrackVitals />
 	</body>
 </html>
