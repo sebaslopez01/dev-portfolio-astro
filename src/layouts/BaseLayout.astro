@@ -40,7 +40,7 @@ const { pageTitle } = Astro.props;
       import { inject } from "@vercel/analytics";
       inject();
     </script>
-    <script>
+    <script is:inline>
       import { vitals } from "../scripts/vitals";
 
       vitals();
