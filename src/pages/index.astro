@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import Tech from "../components/Tech";
 import Works from "../components/Works";
-import StarsCanvas from "../components/canvas/StarsCanvas";
+import Stars from "../components/Stars.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -23,7 +23,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     {/* <Feedbacks /> */}
     <div class="relative z-0">
       <Contact client:visible />
-      <StarsCanvas client:visible />
+      <Stars />
     </div>
   </div>
 </BaseLayout>
