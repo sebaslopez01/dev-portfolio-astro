@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pug
+* source:	https://sketchfab.com/3d-models/pug-6a431b6ac7f0411a9ce275188572f3d0
+* author:	Jonathon.Lai (https://sketchfab.com/Jonathon.Lai)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pug" (https://sketchfab.com/3d-models/pug-6a431b6ac7f0411a9ce275188572f3d0) by Jonathon.Lai (https://sketchfab.com/Jonathon.Lai) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
