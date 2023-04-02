@@ -22,7 +22,6 @@ const path = Object.entries(Astro.params).reduce(
 
   const vitalsUrl = "https://vitals.vercel-analytics.com/v1/vitals";
   const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID as string;
-  console.log("A ID:", import.meta.env.PUBLIC_VERCEL_ENV);
   const dataEl = document.querySelector<HTMLElement>("web-vitals-data");
 
   if (analyticsId) {
