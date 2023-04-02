@@ -4,11 +4,7 @@ import { Points, PointMaterial, Preload } from "@react-three/drei";
 import { inSphere } from "maath/random/dist/maath-random.cjs";
 import type { TypedArray } from "maath/dist/declarations/src/ctypes";
 
-interface StarsProps {
-  ref?: any;
-}
-
-function Stars({ ref }: StarsProps) {
+function Stars() {
   const pointRef = useRef<any>(null);
 
   const [sphere, setSphere] = useState<TypedArray | null>(null);
@@ -45,7 +41,7 @@ function Stars({ ref }: StarsProps) {
   }, []);
 
   return (
-    <group ref={ref} rotation={[0, 0, Math.PI / 4]}>
+    <group rotation={[0, 0, Math.PI / 4]}>
       <Points
         ref={pointRef}
         positions={sphere as Float32Array}
