@@ -2,6 +2,7 @@ import { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import { inSphere } from "maath/random/dist/maath-random.cjs";
+import type { TypedArray } from "maath/dist/declarations/src/ctypes";
 
 interface StarsProps {
   ref?: any;
@@ -9,11 +10,8 @@ interface StarsProps {
 
 function Stars({ ref }: StarsProps) {
   const pointRef = useRef<any>(null);
-  const [pointsQuantity, setPointsQuantity] = useState(5000);
 
-  const [sphere] = useState(() =>
-    inSphere(new Float32Array(pointsQuantity), { radius: 1.2 })
-  );
+  const [sphere, setSphere] = useState<TypedArray | null>(null);
 
   useFrame((_state, delta) => {
     if (pointRef.current) {
@@ -22,21 +20,27 @@ function Stars({ ref }: StarsProps) {
     }
   });
 
-  const handleMediaQueryChange = (event: MediaQueryListEvent) => {
-    if (event.matches) {
-      setPointsQuantity(500);
+  const handleMediaQueryChange = (matches: boolean) => {
+    if (matches) {
+      setSphere(inSphere(new Float32Array(500), { radius: 1.2 }));
     } else {
-      setPointsQuantity(5000);
+      setSphere(inSphere(new Float32Array(5000), { radius: 1.2 }));
     }
   };
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
 
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    handleMediaQueryChange(mediaQuery.matches);
+
+    mediaQuery.addEventListener("change", (e) =>
+      handleMediaQueryChange(e.matches)
+    );
 
     return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      mediaQuery.removeEventListener("change", (e) =>
+        handleMediaQueryChange(e.matches)
+      );
     };
   }, []);
 
