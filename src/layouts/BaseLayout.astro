@@ -40,10 +40,6 @@ const { pageTitle } = Astro.props;
       import { inject } from "@vercel/analytics";
       inject();
     </script>
-    <script is:inline>
-      const data = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
-      console.log(data);
-    </script>
   </head>
   <body>
     <slot />
