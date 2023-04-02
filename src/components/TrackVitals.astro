@@ -29,7 +29,6 @@ const path = Object.entries(Astro.params).reduce(
     webVitals({
       analyticsId,
       path: dataEl?.dataset.path || location.pathname,
-      debug: true,
     });
   }
 
