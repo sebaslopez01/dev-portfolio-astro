@@ -38,8 +38,6 @@ const { pageTitle } = Astro.props;
 
     <script>
       import { inject } from "@vercel/analytics";
-      // @ts-ignore
-      globalThis.process = { env: { NODE_ENV: import.meta.env.MODE } };
       inject();
     </script>
   </head>
