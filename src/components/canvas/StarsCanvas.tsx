@@ -20,7 +20,7 @@ function Stars() {
     if (matches) {
       setSphere(inSphere(new Float32Array(100), { radius: 1.2 }));
     } else {
-      setSphere(inSphere(new Float32Array(5000), { radius: 1.2 }));
+      setSphere(inSphere(new Float32Array(2000), { radius: 1.2 }));
     }
   };
 
