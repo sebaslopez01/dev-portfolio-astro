@@ -41,9 +41,8 @@ const { pageTitle } = Astro.props;
       inject();
     </script>
     <script is:inline>
-      import { vitals } from "../scripts/vitals";
-
-      vitals();
+      const data = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
+      console.log(data);
     </script>
   </head>
   <body>
