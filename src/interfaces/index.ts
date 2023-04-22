@@ -48,6 +48,12 @@ interface ProjectData {
   sourceCodeLink?: string;
 }
 
+interface ContactData {
+  name: string;
+  email: string;
+  message: string;
+}
+
 export type {
   NavLinkData,
   ServiceData,
@@ -55,4 +61,5 @@ export type {
   ExperienceData,
   TestimonialData,
   ProjectData,
+  ContactData,
 };

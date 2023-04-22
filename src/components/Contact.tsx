@@ -1,55 +1,49 @@
-import { useState, useRef, ChangeEvent, FormEvent } from "react";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 
 import SectionWrapper from "./hoc/SectionWrapper";
 import EarthCanvas from "./canvas/EarthCanvas";
 import { slideIn } from "../utils/motion";
+import type { ContactData } from "../interfaces";
 
 function Contact() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [loading, setLoading] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<ContactData>();
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-
-    setForm({ ...form, [name]: value });
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-
-    emailjs
-      .send(
+  const onSubmit: SubmitHandler<ContactData> = async (data) => {
+    try {
+      const emailResponse = await emailjs.send(
         import.meta.env.PUBLIC_EMAIL_SERVICE,
         import.meta.env.PUBLIC_EMAIL_TEMPLATE,
         {
-          from_name: form.name,
+          from_name: data.name,
           to_name: "Sebastián",
-          from_email: form.email,
+          from_email: data.email,
           to_email: "sebaslopez.2002@gmail.com",
-          message: form.message,
+          message: data.message,
         },
         import.meta.env.PUBLIC_EMAIL_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you I will get back to you as soon as possible.");
-
-          setForm({ name: "", email: "", message: "" });
-        },
-        (error) => {
-          setLoading(false);
-          console.log(error);
-
-          alert("Something went wrong. Please try again!");
-        }
       );
+
+      if (emailResponse.status === 200) {
+        reset();
+        alert("Thank you I will get back to you as soon as possible.");
+      } else {
+        console.log(emailResponse.text);
+
+        alert("Something went wrong. Please try again!");
+      }
+    } catch (error) {
+      console.log(error);
+
+      alert("Something went wrong. Please try again!");
+    }
   };
 
   return (
@@ -61,18 +55,17 @@ function Contact() {
         <p className="sectionSubText">Get in touch</p>
         <h3 className="sectionHeadText">Contact Me</h3>
         <form
-          ref={formRef}
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="mt-12 flex flex-col gap-8"
         >
           <label className="flex flex-col">
             <span className="text-white font-medium mb-4">Name</span>
             <input
               type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
+              {...register("name", { required: true, maxLength: 100 })}
               placeholder="What's your name?"
+              maxLength={100}
+              required
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
@@ -80,10 +73,10 @@ function Contact() {
             <span className="text-white font-medium mb-4">Email</span>
             <input
               type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
+              {...register("email", { required: true, maxLength: 150 })}
               placeholder="What's your email?"
+              maxLength={150}
+              required
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
@@ -91,19 +84,19 @@ function Contact() {
             <span className="text-white font-medium mb-4">Message</span>
             <textarea
               rows={7}
-              name="message"
-              value={form.message}
-              onChange={handleChange}
+              {...register("message", { required: true, maxLength: 350 })}
               placeholder="What do you want to say?"
+              maxLength={350}
+              required
               className="bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium"
             />
           </label>
           <button
             type="submit"
             className="bg-tertiary hover:bg-white-100 hover:text-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"
-            disabled={loading}
+            disabled={isSubmitting}
           >
-            {loading ? "Sending..." : "Send"}
+            {isSubmitting ? "Sending..." : "Send"}
           </button>
         </form>
       </motion.div>
