@@ -16,6 +16,18 @@ export default function Navbar() {
     scrollTop > 100 ? setScrolled(true) : setScrolled(false);
   };
 
+  const handleFileSubmit = async () => {
+    const res = await fetch("Dev_Sebastian_Lopez_Martinez_CV.pdf");
+
+    const blob = await res.blob();
+
+    const fileURL = window.URL.createObjectURL(blob);
+    const aLink = document.createElement("a");
+    aLink.href = fileURL;
+    aLink.download = "Dev_Sebastian_Lopez_Martinez_CV.pdf";
+    aLink.click();
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -56,12 +68,20 @@ export default function Navbar() {
               key={link.id}
               className={`${
                 active === link.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } hover:text-white text-[18px] font-medium`}
               onClick={() => setActive(link.title)}
             >
               <a href={`#${link.id}`}>{link.title}</a>
             </li>
           ))}
+          <li>
+            <button
+              onClick={handleFileSubmit}
+              className="text-secondary hover:text-white text-[18px] font-medium"
+            >
+              Resume
+            </button>
+          </li>
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center">
           <img
@@ -92,6 +112,17 @@ export default function Navbar() {
                   <a href={`#${link.id}`}>{link.title}</a>
                 </li>
               ))}
+              <li>
+                <button
+                  onClick={() => {
+                    handleFileSubmit();
+                    setToggle((t) => !t);
+                  }}
+                  className="text-secondary hover:text-white text-[18px] font-medium"
+                >
+                  Resume
+                </button>
+              </li>
             </ul>
           </div>
         </div>
