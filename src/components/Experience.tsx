@@ -1,7 +1,4 @@
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import Vertical from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
 
 import "react-vertical-timeline-component/style.min.css";
@@ -20,7 +17,7 @@ function ExperienceCard({
   title,
 }: ExperienceData) {
   return (
-    <VerticalTimelineElement
+    <Vertical.VerticalTimelineElement
       contentStyle={{ background: "#1d1836", color: "#fff" }}
       contentArrowStyle={{ borderRight: "7px solid #232631" }}
       date={date}
@@ -53,7 +50,7 @@ function ExperienceCard({
           </li>
         ))}
       </ul>
-    </VerticalTimelineElement>
+    </Vertical.VerticalTimelineElement>
   );
 }
 
@@ -65,11 +62,11 @@ function Experience() {
         <h2 className="sectionHeadText text-center">Work Experience</h2>
       </motion.div>
       <div className="mt-20 flex flex-col">
-        <VerticalTimeline>
+        <Vertical.VerticalTimeline>
           {experiences.map((experience, index) => (
             <ExperienceCard key={`experience-${index}`} {...experience} />
           ))}
-        </VerticalTimeline>
+        </Vertical.VerticalTimeline>
       </div>
     </>
   );
