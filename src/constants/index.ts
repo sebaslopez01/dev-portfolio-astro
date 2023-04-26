@@ -141,7 +141,7 @@ const experiences: ExperienceData[] = [
       "Configured a single Linux VPS server to scrape job listings for 21 countries.",
       "Celery was used to automate the execution of the scraping tasks.",
       "Rust was used to optimally remove jobs from the database that were no longer available.",
-      "Tech: Django, PostgreSQL, JavaScript, Python, Rust, TailwindCSS and Linux. ",
+      "Tech: Django, PostgreSQL, JavaScript, Python, Rust, TailwindCSS and Linux.",
     ],
   },
   {

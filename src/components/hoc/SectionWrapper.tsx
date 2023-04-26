@@ -5,7 +5,8 @@ import { staggerContainer } from "../../utils/motion";
 
 export default function SectionWrapper(
   Component: FunctionComponent,
-  idName: string
+  idName: string,
+  amountViewport = 0.25
 ) {
   return function HOC() {
     return (
@@ -13,7 +14,7 @@ export default function SectionWrapper(
         variants={staggerContainer()}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: true, amount: amountViewport }}
         className="padding max-w-7xl mx-auto relative z-0"
       >
         <span className="block mt-[-100px] pb-[100px]" id={idName || undefined}>
