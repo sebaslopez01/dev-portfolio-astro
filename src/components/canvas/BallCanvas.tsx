@@ -1,6 +1,11 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload } from "@react-three/drei";
+import {
+  AdaptiveDpr,
+  BakeShadows,
+  OrbitControls,
+  Preload,
+} from "@react-three/drei";
 import type { ImageMetadata } from "astro";
 
 import CanvasLoader from "../CanvasLoader";
@@ -16,8 +21,10 @@ export default function BallCanvas({ icon }: BallCanvasProps) {
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls enableZoom={false} />
         <Ball imgUrl={icon} />
+        <BakeShadows />
+        <AdaptiveDpr pixelated />
+        <Preload all />
       </Suspense>
-      <Preload all />
     </Canvas>
   );
 }

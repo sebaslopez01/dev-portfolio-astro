@@ -5,5 +5,3 @@ export default function Earth() {
 
   return <primitive object={earth.scene} scale={2.5} position-y={0} />;
 }
-
-useGLTF.preload("/planet/scene.gltf");

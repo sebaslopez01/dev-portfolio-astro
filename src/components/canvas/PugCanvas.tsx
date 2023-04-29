@@ -1,6 +1,11 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload } from "@react-three/drei";
+import {
+  AdaptiveDpr,
+  BakeShadows,
+  OrbitControls,
+  Preload,
+} from "@react-three/drei";
 
 import CanvasLoader from "../CanvasLoader";
 import Pug from "./models/Pug";
@@ -37,8 +42,10 @@ export default function PugCanvas() {
           minPolarAngle={Math.PI / 2}
         />
         <Pug isMobile={isMobile} />
+        <BakeShadows />
+        <AdaptiveDpr pixelated />
+        <Preload all />
       </Suspense>
-      <Preload all />
     </Canvas>
   );
 }

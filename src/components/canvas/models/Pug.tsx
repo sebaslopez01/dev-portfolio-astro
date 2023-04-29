@@ -28,5 +28,3 @@ export default function Pug({ isMobile }: PugProps) {
     </mesh>
   );
 }
-
-useGLTF.preload("/pug/scene.gltf");
