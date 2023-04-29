@@ -1,16 +1,9 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, Preload } from "@react-three/drei";
 
 import CanvasLoader from "../CanvasLoader";
-
-function Earth() {
-  const earth = useGLTF("/planet/scene.gltf");
-
-  return <primitive object={earth.scene} scale={2.5} position-y={0} />;
-}
-
-useGLTF.preload("/planet/scene.gltf");
+import Earth from "./models/Earth";
 
 export default function EarthCanvas() {
   const [isMobile, setIsMobile] = useState(false);
@@ -46,7 +39,6 @@ export default function EarthCanvas() {
         />
         <Earth />
       </Suspense>
-
       <Preload all />
     </Canvas>
   );
