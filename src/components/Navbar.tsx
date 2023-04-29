@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 
+import BurgerButton from "./BurgerButton";
 import { navLinks } from "../constants";
 import logo from "../images/logo.svg";
-import menu from "../assets/menu.svg";
-import close from "../assets/close.svg";
 
 export default function Navbar() {
   const [active, setActive] = useState("");
@@ -64,14 +63,7 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="sm:hidden flex flex-1 justify-end items-center">
-          <img
-            src={toggle ? close.src : menu.src}
-            width={toggle ? close.width : menu.width}
-            height={toggle ? close.height : menu.height}
-            alt="Menu"
-            className="w-[28px] h-[28px] object-contain cursor-pointer"
-            onClick={() => setToggle((t) => !t)}
-          />
+          <BurgerButton isOpen={toggle} setIsOpen={setToggle} />
           <div
             className={`${
               !toggle ? "hidden" : "flex"
