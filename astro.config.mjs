@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, sharpImageService } from "astro/config";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/static";
@@ -17,7 +17,7 @@ export default defineConfig({
     assets: true,
   },
   image: {
-    service: "astro/assets/services/sharp",
+    service: sharpImageService(),
   },
   output: "static",
   adapter: vercel({ analytics: true }),
